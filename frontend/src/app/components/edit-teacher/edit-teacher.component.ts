@@ -9,9 +9,7 @@ import {AppServiceService} from '../../app-service.service';
 })
 export class EditTeacherComponent implements OnInit {
 
-
-  teacherData: any;
-
+  teacherData: any = {};
 
   constructor(private service : AppServiceService, private router: Router) { }
 
@@ -22,20 +20,22 @@ export class EditTeacherComponent implements OnInit {
   }
 
   getTeacherData(){
-    let teacher = {
-      id : this.navigation.extras.state.id
+    const id = this.navigation?.extras?.state?.id || history.state?.id;
+    if (id) {
+      let teacher = { id };
+      this.service.getOneTeacherData(teacher).subscribe((response)=>{
+        this.teacherData = response[0] || {};
+      },(error)=>{
+        console.log('ERROR - ', error)
+      })
     }
-    this.service.getOneTeacherData(teacher).subscribe((response)=>{
-      this.teacherData = response[0];
-    },(error)=>{
-      console.log('ERROR - ', error)
-    })
   }
 
   editTeacher(values){
-    values.id = this.navigation.extras.state.id;
+    const id = this.navigation?.extras?.state?.id || history.state?.id;
+    values.id = id;
     this.service.editTeacher(values).subscribe((response)=>{
-      this.teacherData = response[0];
+      this.router.navigate(['']);
     },(error)=>{
       console.log('ERROR - ', error)
     })
