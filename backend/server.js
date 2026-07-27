@@ -1,4 +1,5 @@
 const express = require ("express");
+const bodyParser = require("body-parser");
 
 const {
   readTeachers,
@@ -106,7 +107,7 @@ app.post("/addStudent", async function (req, res) {
     reqBody.id,
     reqBody.name,
     reqBody.age,
-    reqBody.hometown
+    reqBody.religion
   );
 
   res.setHeader("Content-Type", "application/json");
