@@ -13,12 +13,6 @@
   },
   "author": "keetmalin.13@cse.mrt.ac.lk",
   "license": "ISC",
-  "jest": {
-    "testEnvironment": "node",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ]
-  },
   "dependencies": {
     "body-parser": "^1.20.0",
     "express": "^4.17.3",

@@ -15,9 +15,9 @@ const {
 } = require ("./database.js");
 
 const app = express();
-const bodyParser = require  ("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+const bodyParserPkg = require("body-parser");
+app.use(bodyParserPkg.urlencoded({ extended: false }));
+app.use(bodyParserPkg.json());
 
 app.get("/dbinitialize", async function (req, res) {
   console.log("DB is getting initialized");
